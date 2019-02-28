@@ -1,5 +1,15 @@
 {
   "presets": [
-    "env"
-  ]
+    "@babel/env"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [ "babel-plugin-webpack-alias-7", {
+          "config": "webpack.config.js"
+          }
+        ]
+      ]
+    }
+  }
 }

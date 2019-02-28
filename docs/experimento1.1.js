@@ -10,7 +10,7 @@ let OfflineSerializer = {
 
 let AbstractSerializer = {
   initialize ({ opts }) {
-    return { ...this, opts }
+    return this
   },
   firstEligibleInstance ({ opts }) {
     let strategies, strategyInstance
@@ -49,5 +49,6 @@ backpack.serialize({
       }
     }
   ],
-  opts: backpack.opts
+  opts: backpack.opts,
+  teste: {}
 })

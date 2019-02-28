@@ -1,83 +1,39 @@
 /* eslint-env mocha */
-import '@babel/polyfill'
-import Backpack from '../src/index'
-import assert from 'assert'
+
+import Backpack from '@src/index'
+import expect from '@test/test.config'
 
 describe('Backpack', function () {
-  describe('#init()', function () {
-    it('', function () {
+  describe('#initialize()', function () {
+    let backpack = Backpack.initialize({
+      strategies: [{}]
+    })
 
+    it('should return all the methods of th backpack object', function () {
+      expect(backpack.serialize).to.not.be(undefined)
+    })
 
-      let backpack = new Backpack({
-        strategies: [StrategyOffline, StrategyOnline]
-      })
-
-      backpack.serialize([{
-        action: 'add',
-        data: {
-          variant_id: 123,
-          quantity: 1
-        }
-      }])
-
-      ====
-
-      Backpack.serialize([{
-        action: 'add',
-        data: {
-          variant_id: 123,
-          quantity: 1
-        }
-      }], {
-        strategies: [StrategyOffline]
-      })
-
-
-      ====
-
-
-      backpack = Backpack.init({
-        strategies: [StrategyOffline, StrategyOnline]
-      })
-      backpack.serialize([{
-        action: 'add',
-        data: {
-          variant_id: 123,
-          quantity: 1
-        }
-      }])
-
-
-      ====
-
-
-      Backpack.init({
-        strategies: [StrategyOffline]
-      })
-      Backpack.serialize([{
-        action: 'add',
-        data: {
-          variant_id: 123,
-          quantity: 1
-        }
-      }])
-
-
-
+    it('should return all options passed in de paylod', function () {
+      expect(backpack.options).to.not.be(undefined)
     })
   })
 
   describe('#serialize()', function () {
-    it('should return 1 for the item added', async function () {
-      let bag = await Backpack.serialize([{
-        action: 'add',
-        data: {
-          variant_id: 123,
-          quantity: 1
-        }
-      }])
+    it('should return serialize payload', function () {
+      let strategy1 = {
+        eligible ({ options }) { return false },
+        serialize ({ payload }) { return false }
+      }
 
-      assert.equal(bag.items.length, 1)
+      let strategy2 = {
+        eligible ({ options }) { return true },
+        serialize ({ payload }) { return payload }
+      }
+
+      let backpack = Backpack.initialize({
+        strategies: [strategy1, strategy2]
+      })
+      expect(backpack.serialize(2)).to.be(2)
     })
   })
 })

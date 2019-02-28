@@ -1,7 +1,7 @@
-import StrategyOffline from './strategies/offline'
+import AbstractSerializer from '@src/strategies/abstract'
 
 export default {
-  serialize (payload) {
-    return StrategyOffline.serialize(payload)
+  initialize (options) {
+    return AbstractSerializer.initialize({ options })
   }
 }

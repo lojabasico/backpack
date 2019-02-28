@@ -39,10 +39,10 @@ let backpack = Backpack.init({
   strategies: [OnlineSerializer, OfflineSerializer]
 })
 console.log(backpack)
-backpack.serialize([{
+backpack.serialize([[{
   action: 'add',
   data: {
     variant_id: 123,
     quantity: 1
   }
-}])
+}]])

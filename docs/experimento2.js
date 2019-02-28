@@ -31,13 +31,11 @@ let AbstractSerializer = function (opts) {
   return { serialize }
 }
 
-let Backpack = {
-  init (opts) {
-    return AbstractSerializer(opts)
-  }
+let Backpack = function (opts) {
+  return AbstractSerializer(opts)
 }
 
-let backpack = Backpack.init({
+let backpack = new Backpack({
   strategies: [OnlineSerializer, OfflineSerializer]
 })
 backpack.serialize([{
