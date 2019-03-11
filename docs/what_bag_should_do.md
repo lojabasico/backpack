@@ -1,0 +1,7 @@
+- Ter acesso a Bag
+- Formatar os dados do Payload
+- Saber o que fazer em cada action do Payload
+- Inteligencia para lidar com estoque
+- Precisa poder solicitar uma alteração na Bag
+- Implementar eligible
+- Inteligencia para Scripts de Desconto
